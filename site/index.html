@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ECO-VECINOS · De residuo a recurso</title>
+    <meta
+      name="description"
+      content="Curso gratuito de gestión de residuos para la comunidad de Altamira. Cuatro lecciones teóricas y cuatro talleres prácticos: 20 horas para gestionar, separar y valorizar."
+    />
+    <meta name="theme-color" content="#276449" />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" href="./assets/itm.png" type="image/png" />
+    <script type="module" src="./js/app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <header class="header">
+      <a
+        href="#inicio"
+        class="itm-brand"
+        aria-label="ITM, inicio de Eco-Vecinos"
+        ><img
+          src="./assets/itm.png"
+          alt="ITM · Institución Universitaria"
+          width="200"
+          height="70"
+      /></a>
+      <a href="#inicio" class="wordmark"
+        >eco<span>vecinos</span
+        ><span class="wordmark-dot" aria-hidden="true"></span
+      ></a>
+      <button
+        id="menu-toggle"
+        class="menu-toggle"
+        aria-label="Abrir navegación"
+        aria-expanded="false"
+        aria-controls="main-nav"
+      >
+        Menú <span aria-hidden="true">☰</span>
+      </button>
+      <nav id="main-nav" aria-label="Navegación principal">
+        <a href="#curso">El curso</a><a href="#videos">Antes de la clase</a
+        ><a href="#aula">Mi aula</a
+        ><button class="button small" data-auth="signup">
+          Inscribirme <span aria-hidden="true">↗</span>
+        </button>
+      </nav>
+    </header>
+    <div id="preview-banner" class="preview-banner" hidden>
+      VISTA PREVIA LOCAL · Inscripciones y materiales pendientes de conectar a
+      Supabase.
+    </div>
+    <main id="contenido">
+      <section id="inicio" class="hero section-pad">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="status-dot"></span> ALTAMIRA · FORMACIÓN PARA LA
+            COMUNIDAD
+          </p>
+          <h1>De residuo<br />a <span class="resource-word">recurso.</span></h1>
+          <p class="hero-description">
+            El arte de gestionar, separar y valorizar tu basura.
+          </p>
+          <p class="hero-support">
+            Aprendemos en casa. Lo ponemos en práctica entre vecinos.
+          </p>
+          <div class="hero-actions">
+            <button class="button" data-auth="signup">
+              Quiero ser Eco-Vecino <span aria-hidden="true">↗</span></button
+            ><a class="text-link" href="#curso"
+              >Explorar el curso <span aria-hidden="true">↓</span></a
+            >
+          </div>
+          <div class="hero-meta">
+            <span><strong>Gratuito</strong> · para la comunidad</span
+            ><span><strong>20 horas</strong> · teoría + práctica</span>
+          </div>
+        </div>
+        <div
+          class="cycle-visual"
+          aria-label="Gestionar, separar y valorizar: el ciclo del curso"
+        >
+          <div class="cycle-topline">
+            <span>EL CAMBIO<br />EMPIEZA EN CASA</span
+            ><span aria-hidden="true">↗</span>
+          </div>
+          <div class="cycle-symbol" aria-hidden="true">↻</div>
+          <div class="cycle-center">
+            <span>MENOS RESIDUOS.</span><strong>Más<br />posibilidades.</strong>
+          </div>
+          <div class="cycle-footer">
+            <span>SEPARAR</span><span>COMPOSTAR</span><span>REUTILIZAR</span>
+          </div>
+          <div class="hours-stamp">
+            <strong>20</strong><span>HORAS PARA<br />PASAR A LA ACCIÓN</span>
+          </div>
+        </div>
+      </section>
+      <section class="numbers-strip" aria-label="Estructura del curso">
+        <div>
+          <strong>04</strong
+          ><span>lecciones teóricas<br />2 horas cada una</span>
+        </div>
+        <span class="strip-plus" aria-hidden="true">+</span>
+        <div>
+          <strong>04</strong
+          ><span>talleres prácticos<br />3 horas cada uno</span>
+        </div>
+        <span class="strip-equals" aria-hidden="true">=</span>
+        <div class="strip-total">
+          <strong>20h</strong
+          ><span>de aprendizaje<br />y acción comunitaria</span>
+        </div>
+      </section>
+      <section id="curso" class="section-pad course-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 / NUESTRA RUTA DE APRENDIZAJE</p>
+            <h2>Entender primero.<br /><span>Transformar juntos.</span></h2>
+          </div>
+          <p>
+            Un curso en dos momentos: cuatro encuentros teóricos virtuales y
+            cuatro talleres presenciales en la urbanización.
+          </p>
+        </div>
+        <div
+          class="course-tabs"
+          role="tablist"
+          aria-label="Componentes del curso"
+        >
+          <button
+            id="tab-teoria"
+            role="tab"
+            aria-selected="true"
+            aria-controls="lesson-grid"
+            data-type="teoria"
+          >
+            Lecciones teóricas <span>8 h</span></button
+          ><button
+            id="tab-taller"
+            role="tab"
+            aria-selected="false"
+            aria-controls="lesson-grid"
+            data-type="taller"
+            tabindex="-1"
+          >
+            Talleres prácticos <span>12 h</span>
+          </button>
+        </div>
+        <div
+          id="lesson-grid"
+          class="lesson-grid"
+          role="tabpanel"
+          aria-labelledby="tab-teoria"
+        ></div>
+        <div class="logistics">
+          <p>
+            <span class="label">FECHAS</span
+            ><strong id="course-dates">Por definir</strong>
+          </p>
+          <p>
+            <span class="label">LUGAR DE LOS TALLERES</span
+            ><strong id="course-place">Por definir</strong>
+          </p>
+          <p>
+            <span class="label">INSCRIPCIÓN</span><strong>Sin costo</strong>
+          </p>
+        </div>
+      </section>
+      <section class="method-section section-pad">
+        <p class="eyebrow">APRENDER PARA HACER</p>
+        <div class="method-layout">
+          <h2>Una clase que<br />continúa <em>en casa.</em></h2>
+          <div class="method-steps">
+            <article>
+              <span>01</span>
+              <div>
+                <h3>Antes del encuentro</h3>
+                <p>
+                  Videos cortos de 3 a 5 minutos o infografías, dos días antes
+                  de cada lección.
+                </p>
+              </div>
+            </article>
+            <article>
+              <span>02</span>
+              <div>
+                <h3>Durante la lección</h3>
+                <p>
+                  Encuentros virtuales en Teams para resolver dudas, debatir y
+                  trabajar en grupos pequeños.
+                </p>
+              </div>
+            </article>
+            <article>
+              <span>03</span>
+              <div>
+                <h3>En la comunidad</h3>
+                <p>
+                  Caracterización, compostaje, segunda vida de materiales y un
+                  plan de gestión construido entre vecinos.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section id="videos" class="section-pad videos-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">02 / ANTES DE LA CLASE</p>
+            <h2>
+              Un primer vistazo.<br /><span>Una mejor conversación.</span>
+            </h2>
+          </div>
+          <p>
+            Los recursos previos de cada lección aparecerán aquí cuando el
+            administrador añada sus enlaces de YouTube, Instagram o Facebook.
+          </p>
+        </div>
+        <div id="video-grid" class="video-grid"></div>
+        <p class="section-note">
+          Los videos se abren en su plataforma original. No cargamos
+          reproductores ni rastreadores de redes sociales en esta página.
+        </p>
+      </section>
+      <section id="aula" class="section-pad classroom-section">
+        <div class="classroom-intro">
+          <p class="eyebrow">03 / TU ESPACIO ECO-VECINO</p>
+          <h2>Todo el material.<br />En un mismo lugar.</h2>
+          <p>
+            Guías de las lecciones, fichas de auditoría, talleres, directorios,
+            mapa de rutas y evaluación. Descargas reservadas para participantes
+            inscritos con correo verificado.
+          </p>
+          <div class="classroom-types">
+            <span>PDF</span><span>DOCX</span><span>PPTX</span><span>PNG</span
+            >
+          </div>
+        </div>
+        <div class="access-card">
+          <div class="lock-symbol" aria-hidden="true">↗</div>
+          <p class="eyebrow">AULA PRIVADA</p>
+          <h3>Tu próxima acción<br />empieza aquí.</h3>
+          <p id="access-state">
+            Inscríbete gratuitamente y verifica tu correo para acceder a los
+            materiales.
+          </p>
+          <button class="button lime" id="enter-classroom">
+            Entrar a mi aula <span aria-hidden="true">→</span></button
+          ><button class="quiet-button" data-auth="signup">
+            Aún no estoy inscrito</button
+          ><button id="preview-classroom" class="quiet-button" hidden>
+            Revisar el diseño del aula (sin descargas)
+          </button>
+        </div>
+      </section>
+      <section class="closing-section section-pad">
+        <p class="eyebrow">LO QUE NOS LLEVAMOS</p>
+        <h2>Un compromiso<br />que se queda <span>en el hogar.</span></h2>
+        <div class="closing-copy">
+          <p>
+            El curso cierra con un Pacto de Hogar: tres acciones concretas para
+            separar, aprovechar y manejar nuestros residuos.
+          </p>
+          <p>
+            El programa contempla un diploma para quienes asistan al 80 % de las
+            sesiones y seguimiento comunitario a los 3 y 6 meses.
+          </p>
+        </div>
+        <button class="button" data-auth="signup">
+          Sumarme al curso gratuito <span aria-hidden="true">↗</span>
+        </button>
+      </section>
+    </main>
+    <footer>
+      <div>
+        <a href="#inicio" class="wordmark">eco<span>vecinos</span></a>
+        <p>
+          El arte de gestionar, separar y valorizar tu basura.<br />Urbanización
+          Altamira · Institución Universitaria ITM
+        </p>
+      </div>
+      <div class="footer-links">
+        <button id="privacy-button">Privacidad</button
+        ><button id="admin-button">Administración</button
+        ><a href="#inicio">Volver arriba ↑</a>
+      </div>
+    </footer>
+    <dialog id="lesson-dialog" class="dialog lesson-dialog">
+      <button class="dialog-close" aria-label="Cerrar detalles" data-close>
+        ×
+      </button>
+      <div id="lesson-content"></div>
+    </dialog>
+    <dialog id="auth-dialog" class="dialog auth-dialog">
+      <button class="dialog-close" aria-label="Cerrar acceso" data-close>
+        ×
+      </button>
+      <p class="eyebrow">ECO-VECINOS / ACCESO</p>
+      <h2 id="auth-title">Un paso hacia<br />un hogar circular.</h2>
+      <div id="auth-tabs" class="auth-tabs">
+        <button data-auth-mode="signup" class="active">Inscribirme</button
+        ><button data-auth-mode="login">Ya tengo cuenta</button>
+      </div>
+      <p id="auth-notice" class="notice" role="status"></p>
+      <form id="auth-form">
+        <label id="name-label"
+          >Nombre completo<input
+            name="name"
+            autocomplete="name"
+            maxlength="100" /></label
+        ><label
+          >Correo electrónico<input
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            maxlength="254" /></label
+        ><label id="password-label"
+          >Contraseña<input
+            name="password"
+            type="password"
+            autocomplete="new-password"
+            minlength="12"
+            maxlength="128"
+            required
+          /><small id="password-help">Mínimo 12 caracteres.</small></label
+        ><label id="consent-label" class="checkbox-label"
+          ><input name="consent" type="checkbox" /><span
+            >He leído el
+            <button type="button" id="consent-privacy">
+              aviso de privacidad
+            </button>
+            y autorizo el tratamiento de mi nombre y correo para la inscripción
+            y el acceso al curso.</span
+          ></label
+        ><button id="auth-submit" type="submit" class="button full">
+          Crear mi cuenta gratuita ↗</button
+        ><button id="forgot-password" type="button" class="quiet-button">
+          Olvidé mi contraseña
+        </button>
+      </form>
+    </dialog>
+    <dialog id="privacy-dialog" class="dialog">
+      <button class="dialog-close" aria-label="Cerrar privacidad" data-close>
+        ×
+      </button>
+      <p class="eyebrow">TU INFORMACIÓN</p>
+      <h2>Aviso de privacidad</h2>
+      <div id="privacy-content"></div>
+    </dialog>
+    <dialog id="classroom-dialog" class="dialog wide-dialog">
+      <button class="dialog-close" aria-label="Cerrar aula" data-close>
+        ×
+      </button>
+      <div class="aula-heading">
+        <div>
+          <p class="eyebrow">ECO-VECINOS / AULA</p>
+          <h2 id="aula-title">Mi biblioteca</h2>
+        </div>
+        <button id="logout-button" class="quiet-button" hidden>
+          Cerrar sesión
+        </button>
+      </div>
+      <p id="aula-notice" class="notice" role="status"></p>
+      <div class="library-filters">
+        <label
+          >Buscar material<input
+            id="resource-search"
+            type="search"
+            placeholder="Nombre del documento…" /></label
+        ><label
+          >Filtrar por tema<select id="resource-category">
+            <option value="">Todos los materiales</option>
+          </select></label
+        >
+      </div>
+      <div id="resource-list" class="resource-list"></div>
+    </dialog>
+    <dialog id="admin-dialog" class="dialog wide-dialog">
+      <button
+        class="dialog-close"
+        aria-label="Cerrar administración"
+        data-close
+      >
+        ×
+      </button>
+      <p class="eyebrow">ECO-VECINOS / ADMINISTRACIÓN</p>
+      <h2>El curso, a tu ritmo.</h2>
+      <p id="admin-notice" class="notice" role="status"></p>
+      <div id="admin-content"></div>
+    </dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <noscript
+      ><p class="notice">
+        Activa JavaScript para consultar las sesiones, inscribirte y acceder al
+        aula.
+      </p></noscript
+    >
+  </body>
+</html>

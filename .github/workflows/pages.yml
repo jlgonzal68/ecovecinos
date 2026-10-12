@@ -1,0 +1,33 @@
+name: Publicar ECO-VECINOS en GitHub Pages
+
+# Solo se ejecuta manualmente después de la revisión y autorización del propietario.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener el código
+        uses: actions/checkout@v4
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Subir únicamente los archivos públicos
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - name: Publicar la web
+        id: deployment
+        uses: actions/deploy-pages@v4

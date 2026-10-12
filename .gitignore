@@ -1,0 +1,17 @@
+.work/
+outputs/
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
+private/
+inputs/
+*.pdf
+*.docx
+*.pptx
+*.mp4
+*.whl
+.manus/

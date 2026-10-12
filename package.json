@@ -1,0 +1,30 @@
+{
+  "name": "ecovecinos",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Web de ECO-VECINOS para GitHub Pages con materiales privados en Supabase",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "build": "esbuild node_modules/@supabase/supabase-js/dist/index.mjs --bundle --format=esm --platform=browser --minify --legal-comments=eof --outfile=site/vendor/supabase.mjs",
+    "test:ui": "node tests/ui.check.mjs",
+    "check:materials": "node scripts/upload-materials.mjs --dry-run"
+  },
+  "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@fontsource-variable/syne": "^5.3.0",
+    "@fontsource/montserrat": "^5.3.0",
+    "@fontsource/source-sans-pro": "^5.3.0",
+    "@supabase/supabase-js": "2.99.1"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.9",
+    "@playwright/test": "^1.64.0",
+    "esbuild": "0.25.12",
+    "prettier": "^3.9.10"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
