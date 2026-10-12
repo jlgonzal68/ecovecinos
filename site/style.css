@@ -1329,7 +1329,7 @@ label small {
     font-size: clamp(25px, 7vw, 42px);
   }
   .cycle-symbol {
-    font-size: 350px;
+    font-size: min(350px, 90vw);
     top: 28px;
   }
   .cycle-topline {

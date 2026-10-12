@@ -1,5 +1,7 @@
 # ECO-VECINOS · De residuo a recurso
 
+[**Visitar el sitio publicado**](https://jlgonzal68.github.io/ecovecinos/)
+
 Sitio del curso gratuito de gestión de residuos de la Urbanización Altamira, basado en `ECO-VECINOS.pdf` y los materiales suministrados: **4 lecciones teóricas de 2 horas y 4 talleres prácticos de 3 horas**, 20 horas en total. Las fechas, el lugar y los videos permanecen por completar; no se presentan datos ficticios.
 
 ## Estado comprobado — 12 de octubre de 2026
@@ -12,6 +14,7 @@ Sitio del curso gratuito de gestión de residuos de la Urbanización Altamira, b
 - Cuenta administrativa verificada y rol asignado a `josegonzalezm@correo.itm.edu.co`; panel real disponible. Se probó una descarga privada con verificación de tamaño y SHA-256.
 - Política de privacidad y contactos aprobados. **Las inscripciones generales permanecen cerradas** hasta completar las comprobaciones de publicación y del flujo de participante.
 - Despliegue de GitHub Pages mediante una acción **manual**, no al subir código.
+- Primera publicación completada con HTTPS mediante GitHub Actions. La publicación contiene solo `site/`; los materiales no se copian a GitHub Pages.
 
 Las pruebas de administrador no sustituyen la prueba completa de una inscripción nueva de participante en producción.
 
