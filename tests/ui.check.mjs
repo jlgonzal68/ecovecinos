@@ -38,6 +38,15 @@ try {
     assert.match(typography.body, /Source Sans Pro/);
     assert.match(typography.title, /Montserrat/);
     assert.equal(typography.loaded, true);
+    const textSizes = await page.evaluate(() => {
+      const size = (selector) => parseFloat(getComputedStyle(document.querySelector(selector)).fontSize);
+      return { body: size('body'), metadata: size('.hero-meta'), description: size('.lesson-card p:not(.card-kicker)'), navigation: size('.header nav'), footer: size('footer p') };
+    });
+    assert.equal(textSizes.body, 16); // Fuera del rango: no cambia.
+    assert.equal(textSizes.metadata, width <= 640 ? 14 : 16);
+    assert.equal(textSizes.description, width <= 640 ? 15 : 16);
+    assert.equal(textSizes.navigation, 18);
+    assert.equal(textSizes.footer, 15);
     assert.equal(await page.locator(".lesson-card").count(), 4);
     const dimensions = await page.evaluate(() => ({
       viewport: document.documentElement.clientWidth,
@@ -80,6 +89,8 @@ try {
       .getByRole("button", { name: "Quiero ser Eco-Vecino", exact: true })
       .click();
     assert.equal(await page.locator("#auth-submit").isDisabled(), true);
+    assert.equal(await page.locator('#auth-form input[type="email"]').evaluate(el => parseFloat(getComputedStyle(el).fontSize)), 18);
+    assert.equal(await page.locator('#auth-notice').evaluate(el => parseFloat(getComputedStyle(el).fontSize)), 16);
     assert.match(
       await page.locator("#auth-notice").textContent(),
       /no guarda ni envía/,
@@ -141,7 +152,7 @@ try {
       await page.screenshot({ path: out + `cover-${width}.png` });
     }
     assert.deepEqual(errors, []);
-    report.push({ width, status: "correcto", dimensions });
+    report.push({ width, status: "correcto", dimensions, textSizes });
     await page.close();
   }
   await writeFile(out + "ui-validation.json", JSON.stringify(report, null, 2));

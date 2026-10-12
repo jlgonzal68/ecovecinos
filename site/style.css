@@ -188,7 +188,7 @@ p {
   display: flex;
   align-items: center;
   gap: 30px;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
 }
 .header nav a:hover {
@@ -250,7 +250,7 @@ p {
   margin-left: 15px;
 }
 .eyebrow {
-  font-size: 11px;
+  font-size: 15px;
   letter-spacing: 1.7px;
   font-weight: 700;
   margin-bottom: 25px;
@@ -262,7 +262,7 @@ p {
 .preview-banner {
   background: #f1e9ca;
   color: #514c29;
-  font-size: 12px;
+  font-size: 16px;
   text-align: center;
   padding: 8px 20px;
   border-bottom: 1px solid #ded3a6;
@@ -310,7 +310,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  font-size: 12px;
+  font-size: 16px;
   color: var(--muted);
   margin-top: 32px;
 }
@@ -336,7 +336,7 @@ p {
   right: 42px;
   display: flex;
   justify-content: space-between;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: 1px;
@@ -362,7 +362,7 @@ p {
   margin-top: 30px;
 }
 .cycle-center > span {
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 2px;
   font-weight: 700;
 }
@@ -431,7 +431,7 @@ p {
   letter-spacing: -3px;
 }
 .numbers-strip span {
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.5;
 }
 .numbers-strip .strip-plus,
@@ -457,7 +457,7 @@ p {
 }
 .section-heading > p {
   max-width: 345px;
-  font-size: 14px;
+  font-size: 18px;
   color: var(--muted);
   margin-bottom: 4px;
 }
@@ -477,14 +477,14 @@ p {
   padding: 11px 18px;
   border-radius: 6px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 18px;
 }
 .course-tabs button[aria-selected="true"] {
   background: var(--ink);
   color: #fff;
 }
 .course-tabs span {
-  font-size: 11px;
+  font-size: 15px;
   opacity: 0.75;
   margin-left: 12px;
 }
@@ -521,7 +521,7 @@ p {
   letter-spacing: -2px;
 }
 .duration {
-  font-size: 10px;
+  font-size: 14px;
   border: 1px solid #a5bba4;
   border-radius: 20px;
   padding: 4px 8px;
@@ -541,7 +541,7 @@ p {
   margin-bottom: 15px;
 }
 .lesson-card p:not(.card-kicker) {
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--muted);
   margin-bottom: 22px;
@@ -552,7 +552,7 @@ p {
   background: none;
   text-align: left;
   padding: 14px 0 0;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--ink);
   margin-top: auto;
@@ -594,7 +594,7 @@ p {
   margin-bottom: 8px;
 }
 .logistics strong {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
 }
 .method-section {
@@ -636,7 +636,7 @@ p {
   margin-bottom: 8px;
 }
 .method-steps p {
-  font-size: 13px;
+  font-size: 17px;
   line-height: 1.65;
   color: #d5e4d5;
   margin-bottom: 0;
@@ -675,7 +675,7 @@ p {
   position: absolute;
   left: 18px;
   top: 14px;
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 1px;
 }
 .video-card-content {
@@ -688,7 +688,7 @@ p {
   margin-bottom: 12px;
 }
 .video-card p {
-  font-size: 11px;
+  font-size: 15px;
   color: var(--muted);
   margin: 0;
 }
@@ -697,11 +697,11 @@ p {
   border-top: 1px solid var(--line);
   padding-top: 10px;
   margin-top: 10px;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
 }
 .section-note {
-  font-size: 11px;
+  font-size: 15px;
   color: var(--muted);
   margin-top: 24px;
 }
@@ -715,7 +715,7 @@ p {
 .classroom-intro p:not(.eyebrow) {
   max-width: 440px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 18px;
 }
 .classroom-types {
   display: flex;
@@ -723,7 +723,7 @@ p {
   margin-top: 30px;
 }
 .classroom-types span {
-  font-size: 10px;
+  font-size: 14px;
   border: 1px solid #b7c5b0;
   padding: 4px 10px;
   border-radius: 5px;
@@ -746,7 +746,7 @@ p {
   margin-bottom: 18px;
 }
 .access-card p:not(.eyebrow) {
-  font-size: 13px;
+  font-size: 17px;
   color: #bac7b7;
   max-width: 290px;
   margin-bottom: 28px;
@@ -769,7 +769,7 @@ p {
   text-underline-offset: 4px;
   padding: 11px 0;
   color: inherit;
-  font-size: 12px;
+  font-size: 16px;
 }
 .access-card .quiet-button {
   width: 100%;
@@ -794,7 +794,7 @@ p {
 }
 .closing-copy p {
   flex: 1;
-  font-size: 14px;
+  font-size: 18px;
   color: var(--muted);
 }
 footer {
@@ -806,7 +806,7 @@ footer {
   gap: 30px;
 }
 footer p {
-  font-size: 11px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--muted);
   margin-top: 12px;
@@ -816,7 +816,7 @@ footer p {
   display: flex;
   gap: 26px;
   align-items: center;
-  font-size: 11px;
+  font-size: 15px;
 }
 .footer-links button {
   background: none;
@@ -859,7 +859,7 @@ footer p {
 }
 .dialog p,
 .dialog li {
-  font-size: 14px;
+  font-size: 18px;
 }
 .dialog ul {
   padding-left: 20px;
@@ -868,7 +868,7 @@ footer p {
   margin-bottom: 10px;
 }
 .lesson-dialog .source-note {
-  font-size: 10px;
+  font-size: 14px;
   color: var(--muted);
   border-top: 1px solid var(--line);
   padding-top: 14px;
@@ -879,7 +879,7 @@ footer p {
   gap: 20px;
   border-bottom: 1px solid var(--line);
   padding: 10px 0;
-  font-size: 12px;
+  font-size: 16px;
 }
 .agenda-row strong {
   flex: 0 0 55px;
@@ -894,7 +894,7 @@ footer p {
   border: 0;
   background: none;
   padding: 10px 0;
-  font-size: 13px;
+  font-size: 17px;
   color: var(--muted);
 }
 .auth-tabs button.active {
@@ -904,7 +904,7 @@ footer p {
 }
 label {
   display: block;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
   margin-bottom: 17px;
 }
@@ -918,7 +918,7 @@ select {
   padding: 12px 14px;
   margin-top: 7px;
   color: var(--ink);
-  font-size: 14px;
+  font-size: 18px;
   min-width: 0;
 }
 input:disabled {
@@ -926,7 +926,7 @@ input:disabled {
 }
 label small {
   display: block;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 400;
   color: var(--muted);
   margin-top: 5px;
@@ -936,7 +936,7 @@ label small {
   align-items: flex-start;
   gap: 10px;
   font-weight: 400;
-  font-size: 11px;
+  font-size: 15px;
 }
 .checkbox-label input {
   accent-color: var(--green);
@@ -952,7 +952,7 @@ label small {
   padding: 0;
 }
 .notice {
-  font-size: 12px !important;
+  font-size: 16px !important;
   line-height: 1.6;
   border-left: 3px solid var(--green);
   padding: 12px 15px;
@@ -1002,13 +1002,13 @@ label small {
 }
 .resource-row h3 {
   font-family: var(--body);
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.4;
   letter-spacing: 0;
   margin: 0 0 3px;
 }
 .resource-row p {
-  font-size: 10px;
+  font-size: 14px;
   margin: 0;
   color: var(--muted);
 }
@@ -1016,7 +1016,7 @@ label small {
   border: 1px solid #bdc9b4;
   background: #fff;
   border-radius: 6px;
-  font-size: 11px;
+  font-size: 15px;
   padding: 8px 13px;
   color: var(--ink);
 }
@@ -1043,7 +1043,7 @@ label small {
   margin-bottom: 20px;
 }
 .admin-list-row {
-  font-size: 12px;
+  font-size: 16px;
   padding: 14px 0;
   border-top: 1px solid var(--line);
   display: flex;
@@ -1052,13 +1052,13 @@ label small {
 }
 .admin-list-row p {
   margin-bottom: 6px;
-  font-size: 12px;
+  font-size: 16px;
 }
 .admin-list-row button {
   border: 1px solid var(--line);
   background: var(--paper);
   border-radius: 4px;
-  font-size: 10px;
+  font-size: 14px;
   padding: 5px 10px;
   height: fit-content;
 }
@@ -1073,7 +1073,7 @@ label small {
   padding: 15px 25px;
   border-radius: 9px;
   max-width: 90vw;
-  font-size: 13px;
+  font-size: 17px;
   box-shadow: 0 10px 30px #0003;
 }
 @media (min-width: 1500px) {
@@ -1219,7 +1219,7 @@ label small {
     gap: 12px;
   }
   .numbers-strip span {
-    font-size: 10px;
+    font-size: 14px;
   }
   .method-layout {
     gap: 40px;
@@ -1251,7 +1251,7 @@ label small {
   }
   .menu-toggle {
     display: block;
-    font-size: 12px;
+    font-size: 16px;
   }
   .header nav {
     position: absolute;
@@ -1300,22 +1300,22 @@ label small {
     max-width: 320px;
   }
   .hero-support {
-    font-size: 14px;
+    font-size: 18px;
   }
   .hero-actions {
     gap: 22px;
   }
   .hero-actions .button {
     padding: 16px 19px;
-    font-size: 13px;
+    font-size: 17px;
     gap: 15px;
   }
   .hero-actions .text-link {
-    font-size: 12px;
+    font-size: 16px;
   }
   .hero-meta {
     flex-direction: row;
-    font-size: 10px;
+    font-size: 14px;
     gap: 15px;
   }
   .cycle-visual {
@@ -1382,7 +1382,7 @@ label small {
   }
   .section-heading > p {
     max-width: none;
-    font-size: 13px;
+    font-size: 17px;
     margin-top: 22px;
     margin-bottom: 0;
   }
@@ -1401,7 +1401,7 @@ label small {
   .course-tabs button {
     flex: 1;
     padding: 12px 8px;
-    font-size: 12px;
+    font-size: 16px;
   }
   .course-tabs span {
     margin-left: 6px;
@@ -1418,7 +1418,7 @@ label small {
     font-size: 23px;
   }
   .lesson-card p:not(.card-kicker) {
-    font-size: 11px;
+    font-size: 15px;
   }
   .card-top {
     margin-bottom: 26px;
@@ -1431,14 +1431,14 @@ label small {
     padding: 3px 6px;
   }
   .card-link {
-    font-size: 10px;
+    font-size: 14px;
   }
   .logistics {
     grid-template-columns: 1fr 1fr;
     gap: 25px;
   }
   .logistics strong {
-    font-size: 12px;
+    font-size: 16px;
   }
   .label {
     font-size: 8px;
@@ -1459,7 +1459,7 @@ label small {
     font-size: 20px;
   }
   .method-steps p {
-    font-size: 12px;
+    font-size: 16px;
   }
   .video-grid {
     gap: 12px;
@@ -1474,14 +1474,14 @@ label small {
     font-size: 20px;
   }
   .video-card p {
-    font-size: 10px;
+    font-size: 14px;
   }
   .classroom-section {
     grid-template-columns: 1fr;
     gap: 30px;
   }
   .classroom-intro p:not(.eyebrow) {
-    font-size: 13px;
+    font-size: 17px;
   }
   .access-card {
     padding: 30px;
@@ -1497,7 +1497,7 @@ label small {
     margin: 22px 0;
   }
   .closing-copy p {
-    font-size: 13px;
+    font-size: 17px;
     margin-bottom: 18px;
   }
   footer {
@@ -1533,7 +1533,7 @@ label small {
     justify-self: start;
   }
   .resource-row h3 {
-    font-size: 12px;
+    font-size: 16px;
   }
   .admin-grid {
     grid-template-columns: 1fr;
@@ -1582,7 +1582,7 @@ label small {
     grid-template-columns: 1fr;
   }
   .course-tabs button {
-    font-size: 11px;
+    font-size: 15px;
   }
   .hero-actions {
     gap: 15px;
@@ -1596,7 +1596,7 @@ label small {
   }
   .menu-toggle {
     display: block;
-    font-size: 12px;
+    font-size: 16px;
   }
   .header nav {
     position: absolute;
