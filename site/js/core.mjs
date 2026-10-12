@@ -42,6 +42,9 @@ export function formatBytes(bytes) {
 export function safeFilename(name) {
   return String(name).replace(/[\\/\x00-\x1f]/g, "_");
 }
+export function isPDFMaterial(material) {
+  return Boolean(material && material.format === "PDF" && /\.pdf$/i.test(material.filename || ""));
+}
 export function passwordSetupRequested(hash = "") {
   const type = new URLSearchParams(String(hash).replace(/^#/, "")).get("type");
   return type === "recovery" || type === "invite";

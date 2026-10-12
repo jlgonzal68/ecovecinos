@@ -46,6 +46,11 @@ async function setup() {
   await db.exec(`insert into public.materials(id,title,filename,format,category,bytes,sha256,paths) values('test','Guía','guia.pdf','PDF','general',10,repeat('a',64),array['test/guia.pdf']);
     insert into storage.objects(bucket_id,name) values('ecovecinos-materiales','test/guia.pdf'),('ecovecinos-materiales','orphan.pdf');
     insert into public.videos(lesson_id,title,url,published) values('teoria-1','Visible','https://youtu.be/test',true),('teoria-1','Oculto','https://youtu.be/hidden',false);`);
+  await db.exec(`insert into public.materials(id,title,filename,format,category,bytes,sha256,paths) values('legacy','Original editable','guia.docx','DOCX','general',10,repeat('b',64),array['test/guia.docx']);
+    insert into storage.objects(bucket_id,name) values('ecovecinos-materiales','test/guia.docx');`);
+  await db.exec(await readFile(new URL('../supabase/pdf-only-materials.sql', import.meta.url), 'utf8'));
+  // La migración es idempotente y no destruye los originales.
+  await db.exec(await readFile(new URL('../supabase/pdf-only-materials.sql', import.meta.url), 'utf8'));
   return db;
 }
 async function as(db, role, id, fn) {
@@ -134,6 +139,16 @@ test("PostgreSQL: esquema, verificación de correo y RLS", async (t) => {
         });
       },
     );
+    await t.test("Material editable archivado no se lee ni descarga por participantes", async () => {
+      assert.equal((await db.query("select published from public.materials where id='legacy'")).rows[0].published, false);
+      await as(db, "authenticated", ids.student, async () => {
+        assert.equal((await db.query("select * from public.materials where id='legacy'")).rows.length, 0);
+        assert.equal((await db.query("select * from storage.objects where name='test/guia.docx'")).rows.length, 0);
+      });
+      await as(db, "authenticated", ids.admin, async () => {
+        await assert.rejects(db.query("insert into public.materials(id,title,filename,format,category,bytes,sha256,paths) values('new-word','Word','nuevo.docx','DOCX','general',10,repeat('a',64),array['nuevo.docx'])"), /row-level security/);
+      });
+    });
     await t.test(
       "Alumno no se convierte en administrador ni modifica inscripciones",
       async () => {
@@ -208,7 +223,7 @@ test("PostgreSQL: esquema, verificación de correo y RLS", async (t) => {
         );
         assert.equal(
           (await db.query("select * from storage.objects")).rows.length,
-          2,
+          3,
         );
         await db.query(
           "update public.course_settings set course_dates='Fecha de prueba'",

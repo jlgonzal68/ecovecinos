@@ -4,6 +4,7 @@ import {
   videoProvider,
   sourceCategory,
   formatBytes,
+  isPDFMaterial,
 } from "./core.mjs";
 import { unwrap, userMessage, uploadMaterial } from "./backend.mjs";
 
@@ -32,7 +33,7 @@ export async function mountAdmin({
     .map((l) => `<option value="${l.id}">0${l.number} · ${e(l.title)}</option>`)
     .join(
       "",
-    )}</select></label><label>Título del recurso<input name="title" required maxlength="150" ${disabled}></label><label>Enlace de YouTube, Instagram o Facebook<input name="url" type="url" required placeholder="https://…" maxlength="2048" ${disabled}></label><label>Orden de aparición<input name="position" type="number" min="0" max="999" value="0" ${disabled}></label><label class="checkbox-label"><input name="published" type="checkbox" checked ${disabled}><span>Mostrar el enlace en la web pública</span></label><button class="button full" ${disabled}>Guardar video</button><button type="button" id="cancel-video-edit" class="quiet-button" hidden>Cancelar edición</button></form><div id="admin-video-list"></div></section></div><section class="admin-block"><h3>Materiales privados</h3><p>Selecciona un archivo del inventario original. Los archivos grandes se dividen en partes privadas de 40 MiB y se reconstruyen al descargarlos.</p><form id="upload-form"><label>Material del inventario<select name="entry" ${disabled}>${state.catalog.map((r) => `<option value="${e(r.id)}">${e(r.filename)} · ${formatBytes(r.bytes)}</option>`).join("")}</select></label><label>Archivo original<input name="file" type="file" required ${disabled}></label><button class="button" ${disabled}>Cargar a almacenamiento privado ↗</button></form><p class="section-note">Se comprueban nombre y extensión. La aplicación calcula SHA-256 para verificar las descargas. Las cargas anteriores no se borran al actualizar un material.</p></section>`;
+    )}</select></label><label>Título del recurso<input name="title" required maxlength="150" ${disabled}></label><label>Enlace de YouTube, Instagram o Facebook<input name="url" type="url" required placeholder="https://…" maxlength="2048" ${disabled}></label><label>Orden de aparición<input name="position" type="number" min="0" max="999" value="0" ${disabled}></label><label class="checkbox-label"><input name="published" type="checkbox" checked ${disabled}><span>Mostrar el enlace en la web pública</span></label><button class="button full" ${disabled}>Guardar video</button><button type="button" id="cancel-video-edit" class="quiet-button" hidden>Cancelar edición</button></form><div id="admin-video-list"></div></section></div><section class="admin-block"><h3>Materiales privados</h3><p>Selecciona una versión PDF del inventario original. Los archivos grandes se dividen en partes privadas de 40 MiB y se reconstruyen al descargarlos.</p><form id="upload-form"><label>Material del inventario<select name="entry" ${disabled}>${state.catalog.filter(isPDFMaterial).map((r) => `<option value="${e(r.id)}">${e(r.filename)} · ${formatBytes(r.bytes)}</option>`).join("")}</select></label><label>Archivo original<input name="file" type="file" accept=".pdf,application/pdf" required ${disabled}></label><button class="button" ${disabled}>Cargar a almacenamiento privado ↗</button></form><p class="section-note">Se comprueban nombre y extensión. La aplicación calcula SHA-256 para verificar las descargas. Las cargas anteriores no se borran al actualizar un material.</p></section>`;
   const list = document.querySelector("#admin-video-list");
   function listVideos() {
     list.innerHTML = state.videos.length
@@ -159,6 +160,7 @@ export async function mountAdmin({
       const entry = state.catalog.find((r) => r.id === f.elements.entry.value);
       const file = f.elements.file.files[0];
       if (!entry || !file) return;
+      if (!isPDFMaterial(entry)) { notice("#admin-notice", "Solo se admiten materiales PDF.", true); return; }
       if (file.name !== entry.filename) {
         notice(
           "#admin-notice",

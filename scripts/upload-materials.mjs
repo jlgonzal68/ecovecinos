@@ -3,7 +3,7 @@ import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash, randomUUID } from "node:crypto";
 import { createClient } from "@supabase/supabase-js";
-import { sourceCategory } from "../site/js/core.mjs";
+import { sourceCategory, isPDFMaterial } from "../site/js/core.mjs";
 
 const base = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const args = process.argv.slice(2);
@@ -19,7 +19,9 @@ const catalog = JSON.parse(
 );
 const originals = [];
 for (const entry of catalog) {
+  if (!isPDFMaterial(entry)) throw new Error("El catálogo de carga solo admite PDF.");
   const bytes = await readFile(resolve(source, entry.filename));
+  if (bytes.subarray(0, 5).toString() !== "%PDF-") throw new Error(`Cabecera PDF inválida: ${entry.filename}`);
   const sha256 = createHash("sha256").update(bytes).digest("hex");
   if (bytes.length !== entry.bytes || sha256 !== entry.sha256)
     throw new Error(
@@ -57,13 +59,7 @@ const { user } = ok(
 );
 if (!user?.email_confirmed_at || !ok(await client.rpc("is_admin")))
   throw new Error("Se requiere una cuenta administrativa verificada.");
-const mime = {
-  PDF: "application/pdf",
-  DOCX: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-  PPTX: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-  PNG: "image/png",
-  MP4: "video/mp4",
-};
+const mime = { PDF: "application/pdf" };
 try {
   for (const entry of originals) {
     const data = await readFile(resolve(source, entry.filename));

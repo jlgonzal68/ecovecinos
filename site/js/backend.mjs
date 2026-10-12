@@ -1,4 +1,4 @@
-import { safeFilename } from "./core.mjs";
+import { safeFilename, isPDFMaterial } from "./core.mjs";
 
 export async function connectBackend(config) {
   if (!config.supabaseUrl || !config.supabaseAnonKey) return null;
@@ -50,6 +50,7 @@ export async function identity(client) {
   return { user, enrolled: Boolean(enrollment), admin };
 }
 export async function downloadMaterial(client, config, material, progress) {
+  if (!isPDFMaterial(material)) throw new Error("El aula solo permite descargar materiales PDF.");
   if (!material.paths?.length)
     throw new Error("Este material todavía no se ha cargado.");
   const parts = [];
@@ -106,6 +107,10 @@ export async function uploadMaterial(
   category,
   progress,
 ) {
+  if (!isPDFMaterial(entry) || !/\.pdf$/i.test(file?.name || ""))
+    throw new Error("Solo se permite cargar el material original en formato PDF.");
+  const signature = new TextDecoder().decode(await file.slice(0, 5).arrayBuffer());
+  if (signature !== "%PDF-") throw new Error("El archivo no contiene una cabecera PDF válida.");
   const maximum = 40 * 1024 * 1024;
   const folder = `${entry.id}/${crypto.randomUUID()}`;
   const paths = [];
@@ -140,7 +145,7 @@ export async function uploadMaterial(
       bytes: file.size,
       sha256,
       paths,
-      mime_type: file.type || "application/octet-stream",
+      mime_type: "application/pdf",
     };
     unwrap(await client.from("materials").upsert(row, { onConflict: "id" }));
     return row;

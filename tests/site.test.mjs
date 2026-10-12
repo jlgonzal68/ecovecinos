@@ -120,22 +120,24 @@ test("Registro permanece cerrado sin configuración real y aviso completo", () =
     true,
   );
 });
-test("Catálogo incluye todos los 22 archivos y sus huellas, sin contenido", async () => {
+test("Catálogo incluye los 10 PDF y sus huellas, sin contenido", async () => {
   const catalog = JSON.parse(
     await readFile(new URL("../site/catalog.json", import.meta.url), "utf8"),
   );
-  assert.equal(catalog.length, 22);
+  assert.equal(catalog.length, 10);
   assert.equal(
     catalog.reduce((sum, x) => sum + x.bytes, 0),
-    65217839,
+    44828240,
   );
   for (const x of catalog) {
+    assert.equal(x.format, "PDF");
+    assert.match(x.filename, /\.pdf$/i);
     assert.match(x.sha256, /^[0-9a-f]{64}$/);
     assert.ok(!x.text);
     assert.ok(!x.content);
     assert.ok(sourceCategory(x.filename));
   }
-  assert.equal(new Set(catalog.map((x) => x.id)).size, 22);
+  assert.equal(new Set(catalog.map((x) => x.id)).size, 10);
   const dir = await readdir(new URL("../site/", import.meta.url), {
     recursive: true,
   });

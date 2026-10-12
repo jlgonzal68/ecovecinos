@@ -8,6 +8,7 @@ import {
   localPreview,
   registrationReady,
   passwordSetupRequested,
+  isPDFMaterial,
 } from "./core.mjs";
 import {
   connectBackend,
@@ -252,6 +253,7 @@ function renderMaterials() {
     : state.materials;
   const rows = list.filter(
     (r) =>
+      isPDFMaterial(r) &&
       (!category || r.category === category) &&
       `${r.title} ${r.filename}`.toLowerCase().includes(needle),
   );
@@ -283,7 +285,7 @@ async function showClassroom(preview = false) {
   notice(
     "#aula-notice",
     preview
-      ? "Vista de revisión, sin sesión ni acceso privado. Los 22 archivos originales están inventariados; las descargas se activarán después de cargarlos en Supabase."
+      ? "Vista de revisión, sin sesión ni acceso privado. Solo se muestran las versiones PDF; las descargas requieren una cuenta inscrita y verificada."
       : "Cargando tus materiales privados…",
   );
   openDialog("#classroom-dialog");
@@ -293,12 +295,13 @@ async function showClassroom(preview = false) {
         await state.client
           .from("materials")
           .select("*")
+          .eq("format", "PDF")
           .order("category")
           .order("title"),
       );
       notice(
         "#aula-notice",
-        "Correo verificado. Solo los participantes inscritos pueden descargar estos archivos.",
+        "Correo verificado. Biblioteca con materiales exclusivamente PDF para participantes inscritos.",
       );
     } catch (error) {
       state.materials = [];

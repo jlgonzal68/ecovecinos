@@ -1,14 +1,5 @@
 [
   {
-    "filename": "Detallado Teorico ECOVecinos.docx",
-    "bytes": 210213,
-    "sha256": "e75f033a9678f7f56e6e27272dc80649b3cd279eb9542f7ac6a69c308373cbbe",
-    "format": "DOCX",
-    "id": "material-02",
-    "title": "Detallado Teorico ECOVecinos",
-    "slug": "detallado-teorico-ecovecinos.docx"
-  },
-  {
     "filename": "Detallado Teorico ECOVecinos.pdf",
     "bytes": 4524654,
     "sha256": "f7d913c0cfeaad1a470fbf7b7f3f1cad36c3c4ddcddeb0585a99783a3c818fe6",
@@ -17,15 +8,6 @@
     "id": "material-03",
     "title": "Detallado Teorico ECOVecinos",
     "slug": "detallado-teorico-ecovecinos.pdf"
-  },
-  {
-    "filename": "DirectorioGestionResiduos.docx",
-    "bytes": 219134,
-    "sha256": "bcfc237f6c9e7973b5188b3a9ce4c830613ee4bb402048b013d1e8a734329a1d",
-    "format": "DOCX",
-    "id": "material-04",
-    "title": "Directorio de Gestión de Residuos",
-    "slug": "directoriogestionresiduos.docx"
   },
   {
     "filename": "DirectorioGestionResiduos.pdf",
@@ -38,15 +20,6 @@
     "slug": "directoriogestionresiduos.pdf"
   },
   {
-    "filename": "ECO-VECINOS.docx",
-    "bytes": 388924,
-    "sha256": "b3b280019d53d9e9d089b8e989b168a811f05f413fcbca371cecb6049e2fc850",
-    "format": "DOCX",
-    "id": "material-06",
-    "title": "ECO-VECINOS",
-    "slug": "eco-vecinos.docx"
-  },
-  {
     "filename": "ECO-VECINOS.pdf",
     "bytes": 4355054,
     "sha256": "7b6e38e2b618d51c16164a23ce97330be47756b52d82cca2c07a40e33899e558",
@@ -55,25 +28,6 @@
     "id": "material-07",
     "title": "ECO-VECINOS",
     "slug": "eco-vecinos.pdf"
-  },
-  {
-    "filename": "Eco-Vecinos.pptx",
-    "bytes": 18216918,
-    "sha256": "fd43e6c3a8cca3831cec1d9b01ec9b5453ead4df0d98d4c67eb1ba7580ce8375",
-    "format": "PPTX",
-    "slides": 15,
-    "id": "material-08",
-    "title": "Eco-Vecinos",
-    "slug": "eco-vecinos.pptx"
-  },
-  {
-    "filename": "EncuestaSatisfaccion.docx",
-    "bytes": 211493,
-    "sha256": "047bfd52c973d9120a5466bb4fab9430942e386ad237b71f496080046c169cf7",
-    "format": "DOCX",
-    "id": "material-09",
-    "title": "Encuesta de Satisfacción",
-    "slug": "encuestasatisfaccion.docx"
   },
   {
     "filename": "EncuestaSatisfaccion.pdf",
@@ -86,15 +40,6 @@
     "slug": "encuestasatisfaccion.pdf"
   },
   {
-    "filename": "Ficha-Taller1 LaVerdadEnTuBolsa.docx",
-    "bytes": 31997,
-    "sha256": "a7386e5eb8ea70962ceaee42a018b71e8cb5a44021f93fa68c873a9756c6a7c7",
-    "format": "DOCX",
-    "id": "material-11",
-    "title": "Ficha-Taller1 La Verdad en tu Bolsa",
-    "slug": "ficha-taller1-laverdadentubolsa.docx"
-  },
-  {
     "filename": "Ficha-Taller1 LaVerdadEnTuBolsa.pdf",
     "bytes": 4273819,
     "sha256": "0250d508c654736fd8d5b0d8845616e42708e2fe292688f19941eade99e30053",
@@ -103,15 +48,6 @@
     "id": "material-12",
     "title": "Ficha-Taller1 La Verdad en tu Bolsa",
     "slug": "ficha-taller1-laverdadentubolsa.pdf"
-  },
-  {
-    "filename": "Mapa de rutas.docx",
-    "bytes": 211700,
-    "sha256": "800ccd6c4752e0eb185eca6e6befa76986d267247ec094cb3ff93759b30c5578",
-    "format": "DOCX",
-    "id": "material-13",
-    "title": "Mapa de rutas",
-    "slug": "mapa-de-rutas.docx"
   },
   {
     "filename": "Mapa de rutas.pdf",
@@ -124,24 +60,6 @@
     "slug": "mapa-de-rutas.pdf"
   },
   {
-    "filename": "RutaResiduos.png",
-    "bytes": 36131,
-    "sha256": "341b9e47e38e0db95b7d348e86990e032fd85047fd61146585a85881dbee5518",
-    "format": "PNG",
-    "id": "material-15",
-    "title": "Esquema de la ruta de residuos",
-    "slug": "rutaresiduos.png"
-  },
-  {
-    "filename": "Taller 1 LaVerdadEnTuBolsa.docx",
-    "bytes": 214177,
-    "sha256": "97b74e303c924ff94bd11d61dc2b7b63a45729f10fdc8d47ca0f1b2b122ff283",
-    "format": "DOCX",
-    "id": "material-16",
-    "title": "Taller 1 La Verdad en tu Bolsa",
-    "slug": "taller-1-laverdadentubolsa.docx"
-  },
-  {
     "filename": "Taller 1 LaVerdadEnTuBolsa.pdf",
     "bytes": 4584627,
     "sha256": "da87a53f1e1cc36e563d280dad4f55203ede202aa4c186664736708e5991f28b",
@@ -150,15 +68,6 @@
     "id": "material-17",
     "title": "Taller 1 La Verdad en tu Bolsa",
     "slug": "taller-1-laverdadentubolsa.pdf"
-  },
-  {
-    "filename": "Taller 2 Manos a la Tierra.docx",
-    "bytes": 216203,
-    "sha256": "8a7fc6f89ec3efb694ca4184b247051bcb5b2ad21f9cc45e2c6ebcabe624a898",
-    "format": "DOCX",
-    "id": "material-18",
-    "title": "Taller 2 Manos a la Tierra",
-    "slug": "taller-2-manos-a-la-tierra.docx"
   },
   {
     "filename": "Taller 2 Manos a la Tierra.pdf",
@@ -171,15 +80,6 @@
     "slug": "taller-2-manos-a-la-tierra.pdf"
   },
   {
-    "filename": "Taller 4 Escuadrón de Seguridad.docx",
-    "bytes": 216206,
-    "sha256": "f01bc40ffe082e0c28b4744ed71b25947461520143946736666865eb90fac2bf",
-    "format": "DOCX",
-    "id": "material-20",
-    "title": "Taller 4 Escuadrón de Seguridad",
-    "slug": "taller-4-escuadron-de-seguridad.docx"
-  },
-  {
     "filename": "Taller 4 Escuadrón de Seguridad.pdf",
     "bytes": 4622443,
     "sha256": "cffdd6b0ce9e1b06cc95eee04ec1800fc96782a09a63814c9b7860e073603206",
@@ -188,15 +88,6 @@
     "id": "material-21",
     "title": "Taller 4 Escuadrón de Seguridad",
     "slug": "taller-4-escuadron-de-seguridad.pdf"
-  },
-  {
-    "filename": "Taller3 Laboratorio de Materiales.docx",
-    "bytes": 216503,
-    "sha256": "fb8ba619dc25d37170e396982c1eb428ce5abc0bda0ad6ca15c9f41cb8f63e9e",
-    "format": "DOCX",
-    "id": "material-22",
-    "title": "Taller 3 Laboratorio de Materiales",
-    "slug": "taller3-laboratorio-de-materiales.docx"
   },
   {
     "filename": "Taller3 Laboratorio de Materiales.pdf",

@@ -104,10 +104,11 @@ try {
         exact: true,
       })
       .click();
-    assert.equal(await page.locator(".resource-row").count(), 22);
+    assert.equal(await page.locator(".resource-row").count(), 10);
     assert.equal(await page.locator("[data-download]:enabled").count(), 0);
+    assert.deepEqual(await page.locator(".format-icon").allTextContents(), Array(10).fill("PDF"));
     await page.locator("#resource-search").fill("Encuesta");
-    assert.equal(await page.locator(".resource-row").count(), 2);
+    assert.equal(await page.locator(".resource-row").count(), 1);
     await page
       .getByRole("button", { name: "Cerrar aula", exact: true })
       .click();

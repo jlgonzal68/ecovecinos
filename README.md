@@ -9,10 +9,10 @@ Curso gratuito de gestión de residuos de la Urbanización Altamira, basado en `
 - Diseño aprobado: **Source Sans Pro** para el cuerpo y **Montserrat** Medium, SemiBold y Bold para títulos; fuentes y licencias alojadas localmente.
 - Logo horizontal azul ITM en la esquina superior izquierda, sin deformación.
 - Sitio publicado con HTTPS mediante **GitHub Actions manual**. El despliegue contiene únicamente `site/`.
-- Supabase real conectado: seis tablas con RLS y almacenamiento privado, con **22 materiales** y tamaños comprobados. La reunión de instructores queda excluida.
+- Supabase real conectado: seis tablas con RLS y almacenamiento privado, con **10 materiales PDF** y tamaños comprobados; los otros formatos se conservan como respaldo privado fuera del acceso de participantes. La reunión de instructores queda excluida.
 - Gmail SMTP con remitente `jlgonzal68@gmail.com`; contraseña de aplicación ingresada personalmente en Supabase, nunca incluida en archivos.
 - Administrador verificado: `josegonzalezm@correo.itm.edu.co`. Panel real y descarga privada con tamaño y SHA-256 comprobados.
-- **Inscripción habilitada**, con consentimiento y confirmación de correo obligatorios. Se completó una inscripción real de participante: acceso automático a los 22 materiales y descarga DOCX con integridad comprobada. Esa cuenta no abrió el panel administrativo.
+- **Inscripción habilitada**, con consentimiento y confirmación de correo obligatorios. Se completó una inscripción real de participante: acceso automático al aula y descarga con integridad comprobada; el catálogo actual muestra solo PDF. Esa cuenta no abrió el panel administrativo.
 - Mínimo de contraseña de **12 caracteres**, tanto en el formulario como en el servidor.
 
 ## Ejecutar y comprobar
@@ -32,7 +32,7 @@ Abrir `http://127.0.0.1:4321/ecovecinos/`. El servidor sirve exclusivamente `sit
 
 ## Backend y seguridad
 
-`supabase/schema.sql` instala **una sola vez en un proyecto nuevo y vacío**. No volver a ejecutarlo en el proyecto del curso ya aprovisionado. Define perfiles, inscripciones, administradores, videos, configuración y catálogo, con RLS y bucket privado `ecovecinos-materiales`.
+`supabase/schema.sql` instala **una sola vez en un proyecto nuevo y vacío**. No volver a ejecutarlo en el proyecto del curso ya aprovisionado. Define perfiles, inscripciones, administradores, videos, configuración y catálogo, con RLS y bucket privado `ecovecinos-materiales`. Después, aplicar `supabase/pdf-only-materials.sql` para habilitar la biblioteca exclusivamente PDF. La migración es idempotente y se prueba en PostgreSQL aislado.
 
 La inscripción se genera en servidor al verificar correo, si el alta se realizó con inscripción abierta, nombre válido y consentimiento de la versión vigente. Sin inscripción o rol administrativo no se descargan materiales. El administrador no se autoasigna desde la web; `supabase/assign-admin.sql` exige cuenta verificada y el correo autorizado.
 
@@ -48,7 +48,7 @@ En la web pública, pulsar **Administración** al pie e iniciar sesión con `jos
 
 El panel permite completar fechas y lugar, abrir o cerrar inscripción, añadir enlaces de YouTube, Instagram o Facebook previos a cada lección teórica y cargar materiales privados. No se han inventado videos, fechas ni contactos docentes.
 
-Los 22 materiales suman **65.217.839 bytes**. Pueden cargarse desde el panel o `scripts/upload-materials.mjs`. Al descargar se comprueba SHA-256. Nuevas cargas no borran versiones anteriores; cualquier limpieza requiere decisión del administrador. `02.10.2026_PresentacionTDG_REC.mp4` es una reunión interna de instructores, fuera del aula, almacenamiento docente y catálogos públicos.
+Los 10 PDF publicados suman **44.828.240 bytes**. Los 12 registros no-PDF se archivan con `published=false`, sin borrar sus objetos ni los originales locales. La política de Storage impide a los participantes solicitar nuevas descargas de esos archivos. Solo se pueden cargar PDF desde el panel o `scripts/upload-materials.mjs`, verificando extensión y cabecera `%PDF-`. Al descargar se comprueba SHA-256. Nuevas cargas no borran versiones anteriores; cualquier limpieza requiere decisión del administrador. `02.10.2026_PresentacionTDG_REC.mp4` es una reunión interna de instructores, fuera del aula, almacenamiento docente y catálogos públicos.
 
 ## GitHub Pages
 
