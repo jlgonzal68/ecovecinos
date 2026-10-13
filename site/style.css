@@ -975,6 +975,19 @@ label small {
   gap: 20px;
   align-items: center;
 }
+.session-exit {
+  flex-shrink: 0;
+  background: var(--green);
+  color: var(--paper);
+  border: 2px solid var(--green);
+  min-height: 44px;
+}
+.access-card .session-exit {
+  margin-top: 12px;
+  background: transparent;
+  color: var(--lime);
+  border-color: var(--lime);
+}
 .library-filters {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -1543,7 +1556,10 @@ label small {
     padding: 20px;
   }
   .aula-heading {
+    flex-direction: column;
     align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
   }
   .cycle-center {
     margin-top: 30px;

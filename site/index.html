@@ -253,6 +253,9 @@
           </p>
           <button class="button lime" id="enter-classroom">
             Entrar a mi aula <span aria-hidden="true">→</span></button
+          ><button class="button session-exit" id="page-logout" type="button" data-logout hidden>
+            Cerrar sesión
+          </button
           ><button class="quiet-button" data-auth="signup">
             Aún no estoy inscrito</button
           ><button id="preview-classroom" class="quiet-button" hidden>
@@ -364,7 +367,7 @@
           <p class="eyebrow">ECO-VECINOS / AULA</p>
           <h2 id="aula-title">Mi biblioteca</h2>
         </div>
-        <button id="logout-button" class="quiet-button" hidden>
+        <button id="logout-button" class="button session-exit" type="button" data-logout hidden>
           Cerrar sesión
         </button>
       </div>
@@ -392,7 +395,10 @@
         ×
       </button>
       <p class="eyebrow">ECO-VECINOS / ADMINISTRACIÓN</p>
-      <h2>El curso, a tu ritmo.</h2>
+      <div class="aula-heading">
+        <h2>El curso, a tu ritmo.</h2>
+        <button id="admin-logout" class="button session-exit" type="button" data-logout hidden>Cerrar sesión</button>
+      </div>
       <p id="admin-notice" class="notice" role="status"></p>
       <div id="admin-content"></div>
     </dialog>

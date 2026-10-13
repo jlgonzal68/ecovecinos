@@ -49,7 +49,8 @@ export async function identity(client) {
   );
   return { user, enrolled: Boolean(enrollment), admin };
 }
-export async function downloadMaterial(client, config, material, progress) {
+export async function downloadMaterial(client, config, material, progress, signal) {
+  signal?.throwIfAborted();
   if (!isPDFMaterial(material)) throw new Error("El aula solo permite descargar materiales PDF.");
   if (!material.paths?.length)
     throw new Error("Este material todavía no se ha cargado.");
@@ -61,9 +62,11 @@ export async function downloadMaterial(client, config, material, progress) {
         .from(config.bucket)
         .createSignedUrl(material.paths[i], 120),
     );
+    signal?.throwIfAborted();
     const response = await fetch(signed.signedUrl, {
       credentials: "omit",
       referrerPolicy: "no-referrer",
+      signal,
     });
     if (!response.ok)
       throw new Error(
@@ -90,6 +93,7 @@ export async function downloadMaterial(client, config, material, progress) {
         "La integridad del archivo no coincide con el original. No se guardó la descarga.",
       );
   }
+  signal?.throwIfAborted();
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement("a");
   anchor.href = url;

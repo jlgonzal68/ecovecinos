@@ -28,3 +28,16 @@ test('Un archivo renombrado PDF sin cabecera PDF no se carga',async()=>{
   file.name='Guía.pdf';
   await assert.rejects(uploadMaterial(null,{},file,{format:'PDF',filename:'Guía.pdf'},'general'),/PDF/);
 });
+test('Cerrar sesión cancela una descarga antes de acceder al servicio',async()=>{
+  const controller=new AbortController();
+  controller.abort();
+  await assert.rejects(downloadMaterial(null,{}, {format:'PDF',filename:'Guía.pdf',paths:['original']},null,controller.signal), {name:'AbortError'});
+});
+test('Cerrar sesión mientras se prepara el enlace impide iniciar la descarga',async()=>{
+  const controller=new AbortController();
+  const client={storage:{from:()=>({createSignedUrl:async()=>{
+    controller.abort();
+    return {data:{signedUrl:'https://invalid.example/no-se-descarga.pdf'}};
+  }})}};
+  await assert.rejects(downloadMaterial(client,{}, {format:'PDF',filename:'Guía.pdf',paths:['original']},null,controller.signal), {name:'AbortError'});
+});

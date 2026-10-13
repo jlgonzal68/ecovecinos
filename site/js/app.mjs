@@ -35,6 +35,50 @@ const state = {
   libraryPreview: false,
 };
 let toastTimer;
+let sessionVersion = 0;
+let loggingOut = false;
+const activeDownloads = new Set();
+function updateSessionControls() {
+  const signedIn = Boolean(state.user);
+  $("#page-logout").hidden = !signedIn;
+  $("#logout-button").hidden = !signedIn || state.libraryPreview;
+  $("#admin-logout").hidden = !signedIn || !state.admin;
+  $("#access-state").textContent = state.enrolled || state.admin
+    ? "Tu correo está verificado. Entra para consultar y descargar tus materiales."
+    : "Inscríbete gratuitamente y verifica tu correo para acceder a los materiales.";
+}
+function clearPrivateSession() {
+  sessionVersion++;
+  for (const controller of activeDownloads) controller.abort();
+  activeDownloads.clear();
+  Object.assign(state, { user: null, enrolled: false, admin: false, materials: [], libraryPreview: false });
+  for (const id of ["#classroom-dialog", "#admin-dialog", "#auth-dialog", "#privacy-dialog"])
+    if ($(id).open) closeDialog(id);
+  $("#resource-list").replaceChildren();
+  $("#admin-content").replaceChildren();
+  $("#resource-search").value = "";
+  $("#resource-category").value = "";
+  $("#auth-form").reset();
+  notice("#aula-notice", "");
+  notice("#admin-notice", "");
+  updateSessionControls();
+}
+async function signOutPrivateSession() {
+  if (!state.client || loggingOut) return;
+  loggingOut = true;
+  document.querySelectorAll("[data-logout]").forEach(button => button.disabled = true);
+  try {
+    unwrap(await state.client.auth.signOut({ scope: "local" }));
+    clearPrivateSession();
+    toast("Sesión cerrada. Has salido de la zona privada.");
+    $("#enter-classroom").focus();
+  } catch (error) {
+    toast(userMessage(error));
+  } finally {
+    loggingOut = false;
+    document.querySelectorAll("[data-logout]").forEach(button => button.disabled = false);
+  }
+}
 function toast(text) {
   $("#toast").textContent = text;
   $("#toast").hidden = false;
@@ -153,16 +197,19 @@ function showAuth(mode = "signup") {
   openDialog("#auth-dialog");
 }
 async function refreshIdentity() {
+  if (loggingOut) return;
+  const version = sessionVersion;
   try {
-    Object.assign(state, await identity(state.client));
+    const current = await identity(state.client);
+    if (loggingOut || version !== sessionVersion) return;
+    Object.assign(state, current);
   } catch {
+    if (loggingOut || version !== sessionVersion) return;
     state.user = null;
     state.enrolled = false;
     state.admin = false;
   }
-  $("#access-state").textContent = state.enrolled
-    ? "Tu correo está verificado. Entra para consultar y descargar tus materiales."
-    : "Inscríbete gratuitamente y verifica tu correo para acceder a los materiales.";
+  updateSessionControls();
 }
 async function authSubmit(event) {
   event.preventDefault();
@@ -268,8 +315,10 @@ function renderMaterials() {
 }
 async function showClassroom(preview = false) {
   if (preview && !state.preview) return;
+  const version = sessionVersion;
   if (!preview) {
     await refreshIdentity();
+    if (loggingOut || version !== sessionVersion) return;
     if (!state.enrolled && !state.admin) {
       showAuth("login");
       return;
@@ -281,7 +330,7 @@ async function showClassroom(preview = false) {
   $("#aula-title").textContent = preview
     ? "Vista previa de la biblioteca"
     : "Mi biblioteca";
-  $("#logout-button").hidden = preview;
+  updateSessionControls();
   notice(
     "#aula-notice",
     preview
@@ -291,7 +340,7 @@ async function showClassroom(preview = false) {
   openDialog("#classroom-dialog");
   if (!preview)
     try {
-      state.materials = unwrap(
+      const materials = unwrap(
         await state.client
           .from("materials")
           .select("*")
@@ -299,11 +348,14 @@ async function showClassroom(preview = false) {
           .order("category")
           .order("title"),
       );
+      if (loggingOut || version !== sessionVersion) return;
+      state.materials = materials;
       notice(
         "#aula-notice",
         "Correo verificado. Biblioteca con materiales exclusivamente PDF para participantes inscritos.",
       );
     } catch (error) {
+      if (loggingOut || version !== sessionVersion) return;
       state.materials = [];
       notice("#aula-notice", userMessage(error), true);
     }
@@ -313,20 +365,28 @@ async function download(id, button) {
   if (state.libraryPreview || !state.client) return;
   const material = state.materials.find((m) => m.id === id);
   if (!material) return;
+  const version = sessionVersion;
+  const controller = new AbortController();
+  activeDownloads.add(controller);
   button.disabled = true;
   try {
-    await downloadMaterial(state.client, state.config, material, (text) =>
-      notice("#aula-notice", text),
-    );
+    await downloadMaterial(state.client, state.config, material, (text) => {
+      if (version === sessionVersion) notice("#aula-notice", text);
+    }, controller.signal);
+    if (version !== sessionVersion) return;
     notice("#aula-notice", "Descarga verificada y preparada para guardar.");
   } catch (error) {
+    if (version !== sessionVersion) return;
     notice("#aula-notice", userMessage(error), true);
   } finally {
+    activeDownloads.delete(controller);
     button.disabled = false;
   }
 }
 async function showAdmin() {
+  const version = sessionVersion;
   await refreshIdentity();
+  if (loggingOut || version !== sessionVersion) return;
   if (!state.admin) {
     if (state.preview && !state.client) {
       openDialog("#admin-dialog");
@@ -359,11 +419,16 @@ async function showAdmin() {
     applySettings,
     renderVideos,
   });
+  if (version !== sessionVersion) $("#admin-content").replaceChildren();
 }
 function bindEvents() {
   document.addEventListener("click", (event) => {
     const button = event.target.closest("button");
     if (!button) return;
+    if (button.hasAttribute("data-logout")) {
+      signOutPrivateSession();
+      return;
+    }
     if (button.hasAttribute("data-close")) button.closest("dialog").close();
     if (button.dataset.auth) showAuth(button.dataset.auth);
     if (button.dataset.lesson) showLesson(button.dataset.lesson);
@@ -398,18 +463,6 @@ function bindEvents() {
   $("#admin-button").addEventListener("click", showAdmin);
   $("#resource-search").addEventListener("input", renderMaterials);
   $("#resource-category").addEventListener("change", renderMaterials);
-  $("#logout-button").addEventListener("click", async () => {
-    try {
-      unwrap(await state.client.auth.signOut());
-      closeDialog("#classroom-dialog");
-      await refreshIdentity();
-      state.materials = [];
-      $("#resource-list").replaceChildren();
-      toast("Sesión cerrada.");
-    } catch (error) {
-      notice("#aula-notice", userMessage(error), true);
-    }
-  });
   $("#menu-toggle").addEventListener("click", () => {
     const open = $("#main-nav").classList.toggle("open");
     $("#menu-toggle").setAttribute("aria-expanded", String(open));
@@ -450,7 +503,9 @@ async function initialize() {
       state.client.auth.onAuthStateChange((event) => {
         if (event === "PASSWORD_RECOVERY")
           setTimeout(() => showAuth("recovery"), 0);
-        else if (["SIGNED_IN", "SIGNED_OUT", "TOKEN_REFRESHED"].includes(event))
+        else if (event === "SIGNED_OUT")
+          clearPrivateSession();
+        else if (["SIGNED_IN", "TOKEN_REFRESHED"].includes(event))
           setTimeout(refreshIdentity, 0);
       });
       const settings = unwrap(
